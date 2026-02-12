@@ -58,7 +58,7 @@
     }
     #ff-help-btn:hover { transform:scale(1.05); }
     #ff-help-btn:active { transform:scale(0.9); }
-    #ff-help-btn svg { width:28px; height:28px; }
+    #ff-help-btn svg { width:28px; height:28px; pointer-events:none; }
 
     #ff-help-panel {
       position:fixed; bottom:108px; right:24px; width:480px; max-height:85vh;
@@ -209,7 +209,7 @@
         ? `<div class="ff-cmeta"><span class="bg">${t.steps}</span><span class="tm">${icon('schedule')}${t.dur}</span></div>`
         : `<div class="ff-cmeta"><span class="tm">Em breve</span></div>`;
       h += `
-        <div class="ff-card ${cls}" ${t.available ? `onclick="window.__ffW.open('${t.url}','${t.id}')"` : ''}>
+        <div class="ff-card ${cls}" ${t.available ? `onclick="window.__ffWidget5.openTutorial('${t.url}','${t.id}')"` : ''}>
           <div class="ff-cico" style="${icoStyle}">${icon(t.icon)}</div>
           <div class="ff-cbody"><h4>${t.title}</h4><p>${t.desc}</p>${meta}</div>
           ${t.available ? `<div class="ff-chev">${icon('chevron')}</div>` : ''}
@@ -231,11 +231,11 @@
 
     const w = document.createElement('div'); w.id = 'ff-help-widget';
     w.innerHTML = `
-      <button id="ff-help-btn" onclick="window.__ffW.toggle()">${icon('help')}</button>
+      <button id="ff-help-btn" onclick="window.__ffWidget5.toggle()">${icon('help')}</button>
       <div id="ff-help-panel">${renderPanel()}</div>
       <div id="ff-tutorial-modal">
         <div id="ff-tutorial-modal-inner">
-          <button id="ff-tutorial-modal-close" onclick="window.__ffW.closeModal()">✕</button>
+          <button id="ff-tutorial-modal-close" onclick="window.__ffWidget5.closeModal()">✕</button>
           <iframe id="ff-tutorial-iframe" src=""></iframe>
         </div>
       </div>`;
@@ -245,14 +245,14 @@
     setInterval(() => { if (window.location.pathname !== lp) { lp = window.location.pathname; document.getElementById('ff-help-panel').innerHTML = renderPanel(); } }, 1000);
   }
 
-  window.__ffW = {
+  window.__ffWidget5 = {
     toggle() {
       const p = document.getElementById('ff-help-panel');
       const b = document.getElementById('ff-help-btn');
       if (p.classList.contains('open')) { p.classList.remove('open'); b.innerHTML = icon('help'); }
       else { p.innerHTML = renderPanel(); p.classList.add('open'); b.innerHTML = icon('close'); }
     },
-    open(url, id) {
+    openTutorial(url, id) {
       document.getElementById('ff-tutorial-iframe').src = url;
       document.getElementById('ff-tutorial-modal').classList.add('open');
       if (id) markSeen(id);
@@ -268,13 +268,13 @@
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       const m = document.getElementById('ff-tutorial-modal');
-      if (m && m.classList.contains('open')) window.__ffW.closeModal();
-      else { const p = document.getElementById('ff-help-panel'); if (p && p.classList.contains('open')) window.__ffW.toggle(); }
+      if (m && m.classList.contains('open')) window.__ffWidget5.closeModal();
+      else { const p = document.getElementById('ff-help-panel'); if (p && p.classList.contains('open')) window.__ffWidget5.toggle(); }
     }
   });
   document.addEventListener('click', e => {
     const w = document.getElementById('ff-help-widget');
-    if (w && !w.contains(e.target)) { const p = document.getElementById('ff-help-panel'); if (p && p.classList.contains('open')) window.__ffW.toggle(); }
+    if (w && !w.contains(e.target)) { const p = document.getElementById('ff-help-panel'); if (p && p.classList.contains('open')) window.__ffWidget5.toggle(); }
   });
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
