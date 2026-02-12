@@ -10,7 +10,7 @@
   var SECTIONS = {
     contacts: {
       match: /\/contacts(\/|$)/,
-      title: '❓ Central de Ajuda',
+      title: 'Central de Ajuda',
       subtitle: 'Aprenda a usar a seção de Contatos',
       tutorials: [
         { title: 'Como Importar Contatos', desc: 'Importe sua base via CSV em poucos cliques.', steps: 6, time: 3, icon: '📥', path: '/tutorials/importacao-contatos/' },
@@ -21,7 +21,7 @@
     },
     conversations: {
       match: /\/conversations(\/|$)/,
-      title: '❓ Central de Ajuda',
+      title: 'Central de Ajuda',
       subtitle: 'Aprenda a usar a seção de Conversas',
       tutorials: [
         { title: 'Navegando no Inbox', desc: 'Domine o inbox unificado — filtre, busque e gerencie conversas.', steps: 7, time: 3, icon: '💬', path: '/tutorials/conversas-inbox/' }
