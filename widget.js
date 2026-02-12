@@ -392,24 +392,27 @@
 
     #ff-tutorial-modal-close {
       position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 40px;
-      height: 40px;
+      top: 8px;
+      right: 8px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      background: #ef4444;
-      border: 2px solid white;
-      color: white;
-      font-size: 20px;
+      background: white;
+      border: none;
+      color: #1e293b;
+      font-size: 14px;
       font-weight: 700;
       cursor: pointer;
       z-index: 100001;
       transition: background 0.2s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     #ff-tutorial-modal-close:hover {
-      background: #dc2626;
+      background: #f1f5f9;
     }
 
     #ff-tutorial-iframe {
