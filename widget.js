@@ -227,13 +227,14 @@
       position: fixed;
       bottom: 92px;
       right: 24px;
-      width: 440px;
-      max-height: 80vh;
-      background: #f8fafc;
-      border-radius: 20px;
-      box-shadow: 0 12px 48px rgba(0,0,0,0.18);
+      width: 480px;
+      max-height: 85vh;
+      background: #f5f5f7;
+      border-radius: 24px;
+      box-shadow: 0 16px 56px rgba(0,0,0,0.2);
       z-index: 99998;
       overflow: hidden;
+      overflow-y: auto;
       transform: scale(0.9) translateY(10px);
       opacity: 0;
       pointer-events: none;
@@ -261,17 +262,17 @@
     }
 
     .ff-panel-header {
-      margin: 0 20px;
-      padding: 24px;
+      margin: 0 24px;
+      padding: 28px;
       background: linear-gradient(135deg, #7c3aed, #a855f7);
       color: white;
-      border-radius: 16px;
+      border-radius: 20px;
     }
 
     .ff-panel-header h3 {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       color: white;
       display: flex;
       align-items: center;
@@ -279,28 +280,39 @@
     }
 
     .ff-panel-header p {
-      font-size: 14px;
+      font-size: 15px;
       color: rgba(255,255,255,0.9);
-      line-height: 1.4;
+      line-height: 1.5;
+    }
+
+    .ff-search-bar {
+      margin: 16px 24px;
+      padding: 14px 18px;
+      background: white;
+      border-radius: 14px;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #94a3b8;
+      font-size: 15px;
     }
 
     .ff-panel-section {
-      padding: 20px 24px 12px;
+      padding: 8px 28px 16px;
       font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
+      letter-spacing: 1px;
       color: #64748b;
     }
 
     .ff-panel-list {
-      padding: 0 20px 8px;
-      overflow-y: auto;
-      max-height: calc(80vh - 260px);
+      padding: 0 24px 16px;
     }
 
     .ff-panel-footer {
-      padding: 16px 24px 20px;
+      padding: 16px 28px 24px;
       text-align: center;
     }
 
@@ -318,15 +330,15 @@
     .ff-tutorial-item {
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding: 18px 20px;
-      margin-bottom: 12px;
+      gap: 18px;
+      padding: 22px 24px;
+      margin-bottom: 16px;
       cursor: pointer;
       transition: all 0.2s;
       background: white;
-      border-radius: 14px;
+      border-radius: 16px;
       border: 1px solid #e8ecf1;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
     }
 
     .ff-tutorial-item:last-child {
@@ -533,6 +545,9 @@
       <div class="ff-panel-header">
         <h3>❓ Central de Ajuda</h3>
         <p>Aprenda a dominar seus ${sectionName} com tutoriais rápidos e interativos.</p>
+      </div>
+      <div class="ff-search-bar">
+        🔍 O que você deseja aprender?
       </div>
     `;
 
