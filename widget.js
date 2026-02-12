@@ -255,7 +255,7 @@
     }
 
     .ff-panel-header {
-      padding: 20px;
+      padding: 24px;
       background: linear-gradient(135deg, #7c3aed, #6d28d9);
       color: white;
     }
@@ -264,15 +264,16 @@
       font-size: 18px;
       font-weight: 700;
       margin-bottom: 4px;
+      color: white;
     }
 
     .ff-panel-header p {
       font-size: 13px;
-      opacity: 0.8;
+      color: rgba(255,255,255,0.85);
     }
 
     .ff-panel-section {
-      padding: 12px 16px 4px;
+      padding: 16px 24px 8px;
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
@@ -281,16 +282,33 @@
     }
 
     .ff-panel-list {
-      padding: 4px 12px 12px;
+      padding: 8px 16px 16px;
       overflow-y: auto;
-      max-height: 380px;
+      max-height: 400px;
+    }
+
+    .ff-panel-footer {
+      padding: 12px 24px 16px;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+    }
+
+    .ff-panel-footer a {
+      color: #7c3aed;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .ff-panel-footer a:hover {
+      text-decoration: underline;
     }
 
     .ff-tutorial-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px;
+      gap: 14px;
+      padding: 14px 16px;
       border-radius: 10px;
       cursor: pointer;
       transition: all 0.2s;
@@ -526,12 +544,18 @@
       html += `</div>`;
     } else {
       html += `
-        <div class="ff-panel-list" style="padding: 32px 16px; text-align: center;">
+        <div class="ff-panel-list" style="padding: 32px 24px; text-align: center;">
           <p style="color: #94a3b8; font-size: 14px;">Nenhum tutorial disponível para esta página ainda.</p>
           <p style="color: #cbd5e1; font-size: 12px; margin-top: 8px;">Estamos criando novos tutoriais constantemente! 🚀</p>
         </div>
       `;
     }
+
+    html += `
+      <div class="ff-panel-footer">
+        <a href="https://full.tips" target="_blank">Ver todos os tutoriais →</a>
+      </div>
+    `;
 
     return html;
   }
