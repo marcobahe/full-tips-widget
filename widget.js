@@ -61,9 +61,6 @@
   // ESTILOS — Convertido do Tailwind do Marco
   // ═══════════════════════════════════════════
   const STYLES = `
-    @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Round');
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
     #ff-help-widget * {
       margin: 0; padding: 0; box-sizing: border-box;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
@@ -501,6 +498,17 @@
   }
 
   function init() {
+    // Load Material Icons font
+    const link1 = document.createElement('link');
+    link1.rel = 'stylesheet';
+    link1.href = 'https://fonts.googleapis.com/icon?family=Material+Icons+Round';
+    document.head.appendChild(link1);
+
+    const link2 = document.createElement('link');
+    link2.rel = 'stylesheet';
+    link2.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap';
+    document.head.appendChild(link2);
+
     const style = document.createElement('style');
     style.textContent = STYLES;
     document.head.appendChild(style);
