@@ -35,32 +35,32 @@
           icon: '📥',
           title: 'Como importar contatos',
           description: 'Importe sua lista via CSV em poucos passos',
-          url: '/tutorials/importacao-contatos/index.html',
+          url: 'https://full.tips/tutorials/importacao-contatos/index.html',
           available: true
         },
         {
           id: 'filtrar-contatos',
           icon: '🔍',
-          title: 'Como usar filtros avançados',
-          description: 'Encontre contatos específicos com filtros',
-          url: null,
-          available: false
+          title: 'Como filtrar contatos',
+          description: 'Use filtros avançados para encontrar quem precisa',
+          url: 'https://full.tips/tutorials/filtrar-contatos/index.html',
+          available: true
         },
         {
           id: 'smart-lists',
           icon: '📋',
-          title: 'Como criar Smart Lists',
-          description: 'Organize contatos em listas inteligentes',
-          url: null,
-          available: false
+          title: 'Listas Inteligentes',
+          description: 'Crie segmentações automáticas que se atualizam',
+          url: 'https://full.tips/tutorials/listas-inteligentes/index.html',
+          available: true
         },
         {
           id: 'tags-contatos',
           icon: '🏷️',
           title: 'Como usar tags',
           description: 'Classifique contatos com tags personalizadas',
-          url: null,
-          available: false
+          url: 'https://full.tips/tutorials/tags/index.html',
+          available: true
         }
       ]
     },
@@ -74,7 +74,7 @@
           icon: '💬',
           title: 'Navegando no Inbox de Conversas',
           description: 'Domine o inbox unificado — filtre, busque e gerencie conversas',
-          url: '/tutorials/conversas-inbox/index.html',
+          url: 'https://full.tips/tutorials/conversas-inbox/index.html',
           available: true
         },
         {
