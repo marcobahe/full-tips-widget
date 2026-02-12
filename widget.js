@@ -394,20 +394,22 @@
       position: absolute;
       top: 12px;
       right: 12px;
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-      border: none;
+      background: #ef4444;
+      border: 2px solid white;
       color: white;
-      font-size: 18px;
+      font-size: 20px;
+      font-weight: 700;
       cursor: pointer;
-      z-index: 10;
+      z-index: 100001;
       transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
     #ff-tutorial-modal-close:hover {
-      background: rgba(255,255,255,0.2);
+      background: #dc2626;
     }
 
     #ff-tutorial-iframe {
