@@ -71,20 +71,20 @@
     }
     #ff-help-panel.open { transform:scale(1) translateY(0); opacity:1; pointer-events:all; }
 
-    .ff-handle { display:flex; justify-content:center; padding:16px 0 12px; }
-    .ff-handle span { width:36px; height:5px; background:rgba(0,0,0,0.1); border-radius:3px; }
+    .ff-handle { display:flex; justify-content:center; padding:20px 0 16px; flex-shrink:0; }
+    .ff-handle span { display:block; width:36px; height:5px; background:rgba(0,0,0,0.12); border-radius:3px; }
 
-    .ff-hdr-wrap { padding:0 24px 20px; }
+    .ff-hdr-wrap { padding:0 24px 20px; flex-shrink:0; }
     .ff-hdr {
       background:linear-gradient(135deg,#6366F1 0%,#A855F7 100%); padding:24px; border-radius:24px;
       color:white; box-shadow:0 10px 25px -5px rgba(99,102,241,0.3);
     }
-    .ff-hdr-top { display:flex; align-items:center; gap:12px; margin-bottom:8px; }
-    .ff-hdr-top svg { width:26px; height:26px; color:white; fill:white; }
+    .ff-hdr-top { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+    .ff-hdr-top svg { width:26px; height:26px; color:white; fill:white; flex-shrink:0; }
     .ff-hdr-top h3 { font-size:24px; font-weight:700; color:white; letter-spacing:-0.02em; }
-    .ff-hdr p { font-size:15px; color:#e9d5ff; line-height:1.5; opacity:0.9; }
+    .ff-hdr p { font-size:15px; color:#e9d5ff; line-height:1.6; opacity:0.9; }
 
-    .ff-srch { padding:0 24px 24px; position:relative; }
+    .ff-srch { padding:0 24px 24px; position:relative; flex-shrink:0; }
     .ff-srch svg { position:absolute; left:40px; top:50%; transform:translateY(-50%); width:22px; height:22px; color:#9ca3af; fill:#9ca3af; pointer-events:none; }
     .ff-srch input {
       width:100%; padding:16px 16px 16px 50px; background:#f9fafb; border:none; border-radius:16px;
@@ -94,7 +94,7 @@
     .ff-srch input::placeholder { color:#9ca3af; }
     .ff-srch input:focus { box-shadow:0 0 0 3px rgba(99,102,241,0.2); background:white; }
 
-    .ff-lhdr { display:flex; align-items:center; justify-content:space-between; padding:0 24px 16px; }
+    .ff-lhdr { display:flex; align-items:center; justify-content:space-between; padding:0 24px 16px; flex-shrink:0; }
     .ff-lhdr h4 { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#9ca3af; }
     .ff-lhdr span { font-size:11px; font-weight:600; color:#6366F1; }
 
