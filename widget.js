@@ -101,7 +101,7 @@
     .ff-list { flex:1; overflow-y:auto; padding:0 24px 24px; display:flex; flex-direction:column; gap:16px; }
 
     .ff-card {
-      width:100%; text-align:left; background:#FFFFFF; padding:20px; border-radius:16px;
+      width:100%; text-align:left; background:#FFFFFF; padding:20px 28px; border-radius:16px;
       border:1px solid #E2E8F0; box-shadow:0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
       display:flex; gap:16px; align-items:center; cursor:pointer; transition:all 0.15s;
     }
