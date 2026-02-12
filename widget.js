@@ -79,16 +79,16 @@
       background:linear-gradient(135deg,#7C3AED,#6366F1); padding:28px; border-radius:24px;
       color:white; box-shadow:0 10px 25px -5px rgba(124,58,237,0.3);
     }
-    .ff-hdr-top { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
-    .ff-hdr-top svg { width:22px; height:22px; color:white; fill:white; }
-    .ff-hdr-top h3 { font-size:20px; font-weight:700; color:white; letter-spacing:-0.3px; }
-    .ff-hdr p { font-size:13px; color:#e9d5ff; line-height:1.5; opacity:0.9; }
+    .ff-hdr-top { display:flex; align-items:center; gap:12px; margin-bottom:8px; }
+    .ff-hdr-top svg { width:26px; height:26px; color:white; fill:white; }
+    .ff-hdr-top h3 { font-size:24px; font-weight:700; color:white; letter-spacing:-0.02em; }
+    .ff-hdr p { font-size:15px; color:#e9d5ff; line-height:1.5; opacity:0.9; }
 
     .ff-srch { padding:0 24px 40px; position:relative; }
     .ff-srch svg { position:absolute; left:40px; top:50%; transform:translateY(-50%); width:22px; height:22px; color:#9ca3af; fill:#9ca3af; pointer-events:none; }
     .ff-srch input {
-      width:100%; padding:14px 14px 14px 48px; background:#f9fafb; border:none; border-radius:16px;
-      font-size:14px; color:#1f2937; outline:none; font-family:inherit;
+      width:100%; padding:16px 16px 16px 50px; background:#f9fafb; border:none; border-radius:16px;
+      font-size:15px; color:#1f2937; outline:none; font-family:inherit; font-weight:400;
       box-shadow:inset 0 2px 4px rgba(0,0,0,0.04); transition:all 0.2s;
     }
     .ff-srch input::placeholder { color:#9ca3af; }
@@ -111,15 +111,15 @@
     .ff-card.off:hover { box-shadow:0 1px 3px rgba(0,0,0,0.05); }
     .ff-card.off:active { transform:none; }
 
-    .ff-cico { width:48px; height:48px; flex-shrink:0; border-radius:14px; display:flex; align-items:center; justify-content:center; }
-    .ff-cico svg { width:24px; height:24px; fill:white; color:white; pointer-events:none; }
+    .ff-cico { width:56px; height:56px; flex-shrink:0; border-radius:16px; display:flex; align-items:center; justify-content:center; }
+    .ff-cico svg { width:28px; height:28px; fill:white; color:white; pointer-events:none; }
 
     .ff-cbody { flex:1; min-width:0; }
-    .ff-cbody h4 { font-size:15px; font-weight:600; color:#111827; margin-bottom:2px; }
-    .ff-cbody p { font-size:13px; color:#6b7280; margin-bottom:10px; line-height:1.4; }
-    .ff-cmeta { display:flex; align-items:center; gap:12px; }
-    .ff-cmeta .bg { font-size:11px; font-weight:600; padding:3px 10px; background:#f3e8ff; color:#7c3aed; border-radius:9999px; }
-    .ff-cmeta .tm { display:flex; align-items:center; gap:4px; font-size:11px; font-weight:500; color:#9ca3af; }
+    .ff-cbody h4 { font-size:18px; font-weight:600; color:#1a1a1a; margin-bottom:4px; }
+    .ff-cbody p { font-size:14px; color:#666666; margin-bottom:12px; line-height:1.5; font-weight:400; }
+    .ff-cmeta { display:flex; align-items:center; gap:16px; }
+    .ff-cmeta .bg { font-size:12px; font-weight:600; padding:4px 12px; background:#f3e8ff; color:#7c3aed; border-radius:9999px; }
+    .ff-cmeta .tm { display:flex; align-items:center; gap:5px; font-size:12px; font-weight:600; color:#9ca3af; }
     .ff-cmeta .tm svg { width:14px; height:14px; fill:#9ca3af; pointer-events:none; }
 
     .ff-chev { color:#d1d5db; display:flex; align-items:center; }
@@ -128,8 +128,8 @@
     .ff-foot { padding:20px 24px; }
     .ff-foot button {
       width:100%; display:flex; align-items:center; justify-content:center; gap:8px;
-      padding:14px; background:transparent; border:2px solid transparent;
-      color:#7c3aed; font-size:14px; font-weight:600; cursor:pointer;
+      padding:16px; background:transparent; border:2px solid transparent;
+      color:#7c3aed; font-size:16px; font-weight:600; cursor:pointer;
       border-radius:16px; transition:all 0.2s; font-family:inherit;
     }
     .ff-foot button:hover { background:#faf5ff; border-color:#f3e8ff; }
