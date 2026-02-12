@@ -74,7 +74,7 @@
     .ff-handle { display:flex; justify-content:center; padding:16px 0 12px; }
     .ff-handle span { width:36px; height:5px; background:rgba(0,0,0,0.1); border-radius:3px; }
 
-    .ff-hdr-wrap { padding:0 24px 28px; }
+    .ff-hdr-wrap { padding:0 24px 40px; }
     .ff-hdr {
       background:linear-gradient(135deg,#7C3AED,#6366F1); padding:28px; border-radius:24px;
       color:white; box-shadow:0 10px 25px -5px rgba(124,58,237,0.3);
@@ -84,7 +84,7 @@
     .ff-hdr-top h3 { font-size:20px; font-weight:700; color:white; letter-spacing:-0.3px; }
     .ff-hdr p { font-size:13px; color:#e9d5ff; line-height:1.5; opacity:0.9; }
 
-    .ff-srch { padding:0 24px 28px; position:relative; }
+    .ff-srch { padding:0 24px 40px; position:relative; }
     .ff-srch svg { position:absolute; left:40px; top:50%; transform:translateY(-50%); width:22px; height:22px; color:#9ca3af; fill:#9ca3af; pointer-events:none; }
     .ff-srch input {
       width:100%; padding:14px 14px 14px 48px; background:#f9fafb; border:none; border-radius:16px;
@@ -94,14 +94,14 @@
     .ff-srch input::placeholder { color:#9ca3af; }
     .ff-srch input:focus { box-shadow:0 0 0 3px rgba(124,58,237,0.2); background:white; }
 
-    .ff-lhdr { display:flex; align-items:center; justify-content:space-between; padding:0 28px 16px; }
+    .ff-lhdr { display:flex; align-items:center; justify-content:space-between; padding:0 28px 20px; }
     .ff-lhdr h4 { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#9ca3af; }
     .ff-lhdr span { font-size:11px; font-weight:600; color:#7c3aed; }
 
-    .ff-list { flex:1; overflow-y:auto; padding:0 24px 20px; display:flex; flex-direction:column; gap:20px; }
+    .ff-list { flex:1; overflow-y:auto; padding:0 24px 24px; display:flex; flex-direction:column; gap:24px; }
 
     .ff-card {
-      width:100%; text-align:left; background:white; padding:16px; border-radius:20px;
+      width:100%; text-align:left; background:white; padding:20px; border-radius:20px;
       border:1px solid #f3f4f6; box-shadow:0 1px 3px rgba(0,0,0,0.05);
       display:flex; gap:20px; align-items:center; cursor:pointer; transition:all 0.15s;
     }
