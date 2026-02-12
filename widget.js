@@ -234,8 +234,8 @@
       position: fixed;
       bottom: 92px;
       right: 24px;
-      width: 360px;
-      max-height: 520px;
+      width: 420px;
+      max-height: 580px;
       background: white;
       border-radius: 16px;
       box-shadow: 0 12px 48px rgba(0,0,0,0.15);
