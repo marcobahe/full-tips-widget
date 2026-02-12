@@ -53,8 +53,8 @@
 
     #ff-help-btn {
       position:fixed; bottom:40px; right:24px; width:56px; height:56px;
-      border-radius:50%; background:white; border:1px solid #f3f4f6; color:#1f2937;
-      cursor:pointer; box-shadow:0 15px 30px -5px rgba(0,0,0,0.3);
+      border-radius:50%; background:#6366F1; border:none; color:white;
+      cursor:pointer; box-shadow:0 20px 25px -5px rgba(99,102,241,0.3);
       transition:all 0.2s; z-index:99999; display:flex; align-items:center; justify-content:center;
     }
     #ff-help-btn:hover { transform:scale(1.05); }
@@ -63,7 +63,7 @@
 
     #ff-help-panel {
       position:fixed; top:16px; bottom:24px; right:24px; width:480px; max-width:95vw;
-      background:white; border-radius:32px;
+      background:linear-gradient(180deg,#F8FAFC 0%,#F1F5F9 100%); border-radius:24px;
       box-shadow:0 -20px 25px -5px rgba(0,0,0,0.1), 0 -8px 10px -6px rgba(0,0,0,0.05), 0 20px 60px rgba(0,0,0,0.15);
       z-index:99998; overflow:hidden; display:flex; flex-direction:column;
       transform:scale(0.9) translateY(10px); opacity:0; pointer-events:none;
@@ -76,8 +76,8 @@
 
     .ff-hdr-wrap { padding:0 24px 20px; }
     .ff-hdr {
-      background:linear-gradient(135deg,#7C3AED,#6366F1); padding:28px; border-radius:24px;
-      color:white; box-shadow:0 10px 25px -5px rgba(124,58,237,0.3);
+      background:linear-gradient(135deg,#6366F1 0%,#A855F7 100%); padding:24px; border-radius:24px;
+      color:white; box-shadow:0 10px 25px -5px rgba(99,102,241,0.3);
     }
     .ff-hdr-top { display:flex; align-items:center; gap:12px; margin-bottom:8px; }
     .ff-hdr-top svg { width:26px; height:26px; color:white; fill:white; }
@@ -92,17 +92,17 @@
       box-shadow:inset 0 2px 4px rgba(0,0,0,0.04); transition:all 0.2s;
     }
     .ff-srch input::placeholder { color:#9ca3af; }
-    .ff-srch input:focus { box-shadow:0 0 0 3px rgba(124,58,237,0.2); background:white; }
+    .ff-srch input:focus { box-shadow:0 0 0 3px rgba(99,102,241,0.2); background:white; }
 
     .ff-lhdr { display:flex; align-items:center; justify-content:space-between; padding:0 24px 16px; }
     .ff-lhdr h4 { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#9ca3af; }
-    .ff-lhdr span { font-size:11px; font-weight:600; color:#7c3aed; }
+    .ff-lhdr span { font-size:11px; font-weight:600; color:#6366F1; }
 
     .ff-list { flex:1; overflow-y:auto; padding:0 24px 24px; display:flex; flex-direction:column; gap:16px; }
 
     .ff-card {
-      width:100%; text-align:left; background:white; padding:20px; border-radius:16px;
-      border:1px solid #f3f4f6; box-shadow:0 1px 3px rgba(0,0,0,0.05);
+      width:100%; text-align:left; background:#FFFFFF; padding:20px; border-radius:16px;
+      border:1px solid #E2E8F0; box-shadow:0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
       display:flex; gap:16px; align-items:center; cursor:pointer; transition:all 0.15s;
     }
     .ff-card:hover { box-shadow:0 4px 16px rgba(0,0,0,0.08); }
@@ -115,10 +115,10 @@
     .ff-cico svg { width:28px; height:28px; fill:white; color:white; pointer-events:none; }
 
     .ff-cbody { flex:1; min-width:0; }
-    .ff-cbody h4 { font-size:18px; font-weight:600; color:#1a1a1a; margin-bottom:6px; }
-    .ff-cbody p { font-size:14px; color:#666666; margin-bottom:12px; line-height:1.5; font-weight:400; letter-spacing:0; }
+    .ff-cbody h4 { font-size:18px; font-weight:600; color:#1E293B; margin-bottom:6px; }
+    .ff-cbody p { font-size:14px; color:#64748B; margin-bottom:12px; line-height:1.5; font-weight:400; }
     .ff-cmeta { display:flex; align-items:center; gap:16px; }
-    .ff-cmeta .bg { font-size:12px; font-weight:600; padding:4px 12px; background:#f3e8ff; color:#7c3aed; border-radius:9999px; }
+    .ff-cmeta .bg { font-size:12px; font-weight:600; padding:4px 12px; background:#EEF2FF; color:#6366F1; border-radius:9999px; }
     .ff-cmeta .tm { display:flex; align-items:center; gap:5px; font-size:12px; font-weight:600; color:#9ca3af; }
     .ff-cmeta .tm svg { width:14px; height:14px; fill:#9ca3af; pointer-events:none; }
 
@@ -129,11 +129,11 @@
     .ff-foot button {
       width:100%; display:flex; align-items:center; justify-content:center; gap:8px;
       padding:16px; background:transparent; border:2px solid transparent;
-      color:#7c3aed; font-size:16px; font-weight:600; cursor:pointer;
+      color:#6366F1; font-size:16px; font-weight:600; cursor:pointer;
       border-radius:16px; transition:all 0.2s; font-family:inherit;
     }
-    .ff-foot button:hover { background:#faf5ff; border-color:#f3e8ff; }
-    .ff-foot button svg { width:20px; height:20px; fill:#7c3aed; pointer-events:none; }
+    .ff-foot button:hover { background:#EEF2FF; border-color:#E0E7FF; }
+    .ff-foot button svg { width:20px; height:20px; fill:#6366F1; pointer-events:none; }
 
     .ff-sp { height:40px; background:white; flex-shrink:0; }
 
