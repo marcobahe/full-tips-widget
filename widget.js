@@ -62,7 +62,7 @@
     #ff-help-btn svg { width:28px; height:28px; pointer-events:none; }
 
     #ff-help-panel {
-      position:fixed; bottom:24px; right:24px; width:480px; max-width:95vw; max-height:94vh;
+      position:fixed; top:16px; bottom:24px; right:24px; width:480px; max-width:95vw;
       background:white; border-radius:32px;
       box-shadow:0 -20px 25px -5px rgba(0,0,0,0.1), 0 -8px 10px -6px rgba(0,0,0,0.05), 0 20px 60px rgba(0,0,0,0.15);
       z-index:99998; overflow:hidden; display:flex; flex-direction:column;
