@@ -48,7 +48,8 @@
   };
 
   const STYLES = `
-    #ff-help-widget, #ff-help-widget *, #ff-help-widget *::before, #ff-help-widget *::after { margin:0; padding:0; box-sizing:border-box !important; font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif !important; -webkit-tap-highlight-color:transparent; line-height:normal !important; zoom:1 !important; -webkit-text-size-adjust:100% !important; }
+    :host { all:initial !important; position:fixed !important; z-index:99999 !important; }
+    #ff-help-widget, #ff-help-widget * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; -webkit-tap-highlight-color:transparent; }
 
     #ff-help-btn {
       position:fixed; bottom:40px; right:24px; width:56px; height:56px;
@@ -61,8 +62,8 @@
     #ff-help-btn svg { width:28px; height:28px; pointer-events:none; }
 
     #ff-help-panel {
-      position:fixed; bottom:108px; right:24px; width:520px !important; max-width:95vw; max-height:85vh;
-      background:white; border-radius:32px; font-size:16px !important;
+      position:fixed; bottom:108px; right:24px; width:480px; max-width:95vw; max-height:85vh;
+      background:white; border-radius:32px;
       box-shadow:0 -20px 25px -5px rgba(0,0,0,0.1), 0 -8px 10px -6px rgba(0,0,0,0.05), 0 20px 60px rgba(0,0,0,0.15);
       z-index:99998; overflow:hidden; display:flex; flex-direction:column;
       transform:scale(0.9) translateY(10px); opacity:0; pointer-events:none;
@@ -209,7 +210,7 @@
         ? `<div class="ff-cmeta"><span class="bg">${t.steps}</span><span class="tm">${icon('schedule')}${t.dur}</span></div>`
         : `<div class="ff-cmeta"><span class="tm">Em breve</span></div>`;
       h += `
-        <div class="ff-card ${cls}" ${t.available ? `onclick="window.__ffWidget5.openTutorial('${t.url}','${t.id}')"` : ''}>
+        <div class="ff-card ${cls}" ${t.available ? `data-url="${t.url}" data-id="${t.id}"` : ''}>
           <div class="ff-cico" style="${icoStyle}">${icon(t.icon)}</div>
           <div class="ff-cbody"><h4>${t.title}</h4><p>${t.desc}</p>${meta}</div>
           ${t.available ? `<div class="ff-chev">${icon('chevron')}</div>` : ''}
@@ -217,64 +218,100 @@
     });
 
     h += `</div>
-      <div class="ff-foot"><button onclick="window.open('https://full.tips','_blank')">Ver todos os tutoriais ${icon('arrow')}</button></div>
+      <div class="ff-foot"><button id="ff-all-tutorials">Ver todos os tutoriais ${icon('arrow')}</button></div>
       <div class="ff-sp"></div>`;
     return h;
   }
 
+  let root; // shadow root reference
+
+  function $(sel) { return root.querySelector(sel); }
+
   function init() {
+    // Load Inter font in main document
     const l = document.createElement('link'); l.rel = 'stylesheet';
     l.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap';
     document.head.appendChild(l);
 
-    const s = document.createElement('style'); s.textContent = STYLES; document.head.appendChild(s);
+    // Create host element
+    const host = document.createElement('div');
+    host.id = 'ff-help-widget-host';
+    host.style.cssText = 'all:initial !important; position:fixed !important; z-index:99999 !important; bottom:0 !important; right:0 !important; pointer-events:none !important;';
+    document.body.appendChild(host);
 
-    const w = document.createElement('div'); w.id = 'ff-help-widget';
-    w.innerHTML = `
-      <button id="ff-help-btn" onclick="window.__ffWidget5.toggle()">${icon('help')}</button>
-      <div id="ff-help-panel">${renderPanel()}</div>
-      <div id="ff-tutorial-modal">
-        <div id="ff-tutorial-modal-inner">
-          <button id="ff-tutorial-modal-close" onclick="window.__ffWidget5.closeModal()">✕</button>
-          <iframe id="ff-tutorial-iframe" src=""></iframe>
+    // Shadow DOM — fully isolated from GHL styles
+    root = host.attachShadow({ mode: 'open' });
+    root.innerHTML = `
+      <style>${STYLES}</style>
+      <div id="ff-help-widget" style="pointer-events:auto;">
+        <button id="ff-help-btn">${icon('help')}</button>
+        <div id="ff-help-panel">${renderPanel()}</div>
+        <div id="ff-tutorial-modal">
+          <div id="ff-tutorial-modal-inner">
+            <button id="ff-tutorial-modal-close">✕</button>
+            <iframe id="ff-tutorial-iframe" src=""></iframe>
+          </div>
         </div>
-      </div>`;
-    document.body.appendChild(w);
+      </div>
+    `;
 
+    // Event listeners inside shadow
+    $('#ff-help-btn').addEventListener('click', () => window.__ffWidget5.toggle());
+    $('#ff-tutorial-modal-close').addEventListener('click', () => window.__ffWidget5.closeModal());
+
+    // SPA navigation
     let lp = window.location.pathname;
-    setInterval(() => { if (window.location.pathname !== lp) { lp = window.location.pathname; document.getElementById('ff-help-panel').innerHTML = renderPanel(); } }, 1000);
+    setInterval(() => { if (window.location.pathname !== lp) { lp = window.location.pathname; $('#ff-help-panel').innerHTML = renderPanel(); bindCardClicks(); } }, 1000);
+
+    bindCardClicks();
+  }
+
+  function bindCardClicks() {
+    root.querySelectorAll('.ff-card:not(.off)').forEach(card => {
+      card.addEventListener('click', () => {
+        const url = card.dataset.url;
+        const id = card.dataset.id;
+        if (url) window.__ffWidget5.openTutorial(url, id);
+      });
+    });
+    const allBtn = root.querySelector('#ff-all-tutorials');
+    if (allBtn) allBtn.addEventListener('click', () => window.open('https://full.tips', '_blank'));
   }
 
   window.__ffWidget5 = {
     toggle() {
-      const p = document.getElementById('ff-help-panel');
-      const b = document.getElementById('ff-help-btn');
+      const p = $('#ff-help-panel');
+      const b = $('#ff-help-btn');
       if (p.classList.contains('open')) { p.classList.remove('open'); b.innerHTML = icon('help'); }
-      else { p.innerHTML = renderPanel(); p.classList.add('open'); b.innerHTML = icon('close'); }
+      else { p.innerHTML = renderPanel(); bindCardClicks(); p.classList.add('open'); b.innerHTML = icon('close'); }
     },
     openTutorial(url, id) {
-      document.getElementById('ff-tutorial-iframe').src = url;
-      document.getElementById('ff-tutorial-modal').classList.add('open');
+      $('#ff-tutorial-iframe').src = url;
+      $('#ff-tutorial-modal').classList.add('open');
       if (id) markSeen(id);
-      document.getElementById('ff-help-panel').classList.remove('open');
-      document.getElementById('ff-help-btn').innerHTML = icon('help');
+      $('#ff-help-panel').classList.remove('open');
+      $('#ff-help-btn').innerHTML = icon('help');
     },
     closeModal() {
-      document.getElementById('ff-tutorial-modal').classList.remove('open');
-      document.getElementById('ff-tutorial-iframe').src = '';
+      $('#ff-tutorial-modal').classList.remove('open');
+      $('#ff-tutorial-iframe').src = '';
     }
   };
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
-      const m = document.getElementById('ff-tutorial-modal');
+      const m = $('#ff-tutorial-modal');
       if (m && m.classList.contains('open')) window.__ffWidget5.closeModal();
-      else { const p = document.getElementById('ff-help-panel'); if (p && p.classList.contains('open')) window.__ffWidget5.toggle(); }
+      else { const p = $('#ff-help-panel'); if (p && p.classList.contains('open')) window.__ffWidget5.toggle(); }
     }
   });
   document.addEventListener('click', e => {
-    const w = document.getElementById('ff-help-widget');
-    if (w && !w.contains(e.target)) { const p = document.getElementById('ff-help-panel'); if (p && p.classList.contains('open')) window.__ffWidget5.toggle(); }
+    // Close if click outside shadow host
+    const host = document.getElementById('ff-help-widget-host');
+    if (host && !host.contains(e.target)) {
+      const p = $('#ff-help-panel');
+      if (p && p.classList.contains('open')) window.__ffWidget5.toggle();
+    }
   });
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
