@@ -245,7 +245,7 @@
       bottom: 92px;
       right: 24px;
       width: 420px;
-      max-height: 580px;
+      max-height: 70vh;
       background: white;
       border-radius: 16px;
       box-shadow: 0 12px 48px rgba(0,0,0,0.15);
@@ -292,9 +292,9 @@
     }
 
     .ff-panel-list {
-      padding: 8px 16px 16px;
+      padding: 8px 0;
       overflow-y: auto;
-      max-height: 400px;
+      max-height: 460px;
     }
 
     .ff-panel-footer {
@@ -318,7 +318,7 @@
       display: flex;
       align-items: flex-start;
       gap: 16px;
-      padding: 16px 20px;
+      padding: 20px 24px;
       cursor: pointer;
       transition: all 0.2s;
       border-bottom: 1px solid #f1f5f9;
