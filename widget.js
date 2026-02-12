@@ -380,11 +380,11 @@
     }
 
     #ff-tutorial-modal-inner {
-      width: 90vw;
-      max-width: 1200px;
-      height: 85vh;
+      width: 96vw;
+      max-width: 1400px;
+      height: 92vh;
       background: #0f0f1a;
-      border-radius: 16px;
+      border-radius: 12px;
       overflow: hidden;
       position: relative;
       box-shadow: 0 24px 80px rgba(0,0,0,0.5);
