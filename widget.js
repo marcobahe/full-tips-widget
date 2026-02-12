@@ -33,33 +33,41 @@
         {
           id: 'importar-contatos',
           icon: '📥',
-          title: 'Como importar contatos',
-          description: 'Importe sua lista via CSV em poucos passos',
+          title: 'Como Importar Contatos',
+          description: 'Importe sua base via CSV em poucos cliques.',
           url: 'https://full.tips/tutorials/importacao-contatos/index.html',
+          steps: '6 passos',
+          duration: '3 min',
           available: true
         },
         {
           id: 'filtrar-contatos',
           icon: '🔍',
-          title: 'Como filtrar contatos',
-          description: 'Use filtros avançados para encontrar quem precisa',
+          title: 'Como Filtrar Contatos',
+          description: 'Use filtros avançados para encontrar quem precisa.',
           url: 'https://full.tips/tutorials/filtrar-contatos/index.html',
+          steps: '6 passos',
+          duration: '3 min',
           available: true
         },
         {
           id: 'smart-lists',
           icon: '📋',
           title: 'Listas Inteligentes',
-          description: 'Crie segmentações automáticas que se atualizam',
+          description: 'Crie segmentações automáticas que se atualizam.',
           url: 'https://full.tips/tutorials/listas-inteligentes/index.html',
+          steps: '7 passos',
+          duration: '4 min',
           available: true
         },
         {
           id: 'tags-contatos',
           icon: '🏷️',
-          title: 'Como usar tags',
-          description: 'Classifique contatos com tags personalizadas',
+          title: 'Como Usar Tags',
+          description: 'Organize contatos com tags — individual ou em massa.',
           url: 'https://full.tips/tutorials/tags/index.html',
+          steps: '7 passos',
+          duration: '4 min',
           available: true
         }
       ]
@@ -73,8 +81,10 @@
           id: 'navegando-inbox',
           icon: '💬',
           title: 'Navegando no Inbox de Conversas',
-          description: 'Domine o inbox unificado — filtre, busque e gerencie conversas',
+          description: 'Domine o inbox unificado — filtre, busque e gerencie conversas.',
           url: 'https://full.tips/tutorials/conversas-inbox/index.html',
+          steps: '7 passos',
+          duration: '3 min',
           available: true
         },
         {
@@ -306,79 +316,65 @@
 
     .ff-tutorial-item {
       display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 16px;
-      border-radius: 10px;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 20px;
       cursor: pointer;
       transition: all 0.2s;
-      border: 1px solid transparent;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .ff-tutorial-item:last-child {
+      border-bottom: none;
     }
 
     .ff-tutorial-item:hover {
       background: #f8fafc;
-      border-color: #e2e8f0;
     }
 
     .ff-tutorial-item.disabled {
-      opacity: 0.5;
+      opacity: 0.45;
       cursor: default;
     }
 
     .ff-tutorial-item.disabled:hover {
       background: transparent;
-      border-color: transparent;
     }
 
     .ff-tutorial-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
       background: #f1f5f9;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 22px;
       flex-shrink: 0;
+    }
+
+    .ff-tutorial-info {
+      flex: 1;
     }
 
     .ff-tutorial-info h4 {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 600;
       color: #1e293b;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
     }
 
     .ff-tutorial-info p {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+
+    .ff-tutorial-meta {
       font-size: 12px;
-      color: #94a3b8;
-      line-height: 1.3;
-    }
-
-    .ff-tutorial-badge {
-      margin-left: auto;
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-
-    .ff-tutorial-badge.available {
-      background: #ecfdf5;
-      color: #059669;
-    }
-
-    .ff-tutorial-badge.coming {
-      background: #f8fafc;
-      color: #94a3b8;
-    }
-
-    .ff-tutorial-arrow {
-      margin-left: auto;
-      color: #cbd5e1;
-      font-size: 16px;
-      flex-shrink: 0;
+      color: #a78bfa;
+      font-weight: 500;
     }
 
     /* Modal iframe overlay */
@@ -518,25 +514,22 @@
     `;
 
     if (tutorials.length > 0) {
-      html += `<div class="ff-panel-section">📚 Tutoriais disponíveis</div>`;
+      // Sem section header - layout limpo
       html += `<div class="ff-panel-list">`;
       
       tutorials.forEach(t => {
         const cls = t.available ? '' : 'disabled';
-        const badge = t.available 
-          ? '<span class="ff-tutorial-badge available">Disponível</span>'
-          : '<span class="ff-tutorial-badge coming">Em breve</span>';
-        
-        const seen = getSeenTutorials();
-        const seenMark = (t.available && seen.includes(t.id)) ? ' ✓' : '';
+        const meta = t.available 
+          ? `<div class="ff-tutorial-meta">${t.steps || '7 passos'} • ~${t.duration || '3 min'}</div>`
+          : `<div class="ff-tutorial-meta" style="color:#94a3b8;">Em breve</div>`;
         html += `
           <div class="ff-tutorial-item ${cls}" ${t.available ? `onclick="window.__ffWidget.openTutorial('${t.url}', '${t.id}')"` : ''}>
             <div class="ff-tutorial-icon">${t.icon}</div>
             <div class="ff-tutorial-info">
-              <h4>${t.title}${seenMark}</h4>
+              <h4>${t.title}</h4>
               <p>${t.description || ''}</p>
+              ${meta}
             </div>
-            ${badge}
           </div>
         `;
       });
