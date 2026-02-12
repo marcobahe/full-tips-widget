@@ -55,9 +55,10 @@
     var css = document.createElement('style');
     css.id = 'ft-widget-css';
     css.textContent = [
-      '#ft-widget-btn{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(124,58,237,.4);z-index:99999;display:flex;align-items:center;justify-content:center;font-size:24px;transition:transform .2s,box-shadow .2s}',
-      '#ft-widget-btn:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(124,58,237,.55)}',
-      '#ft-widget-panel{position:fixed;bottom:92px;right:24px;width:360px;max-height:520px;background:#fff;border-radius:16px;box-shadow:0 12px 48px rgba(0,0,0,.18);z-index:99999;overflow:hidden;opacity:0;transform:translateY(12px) scale(.96);pointer-events:none;transition:opacity .25s,transform .25s;font-family:Inter,-apple-system,BlinkMacSystemFont,Segoe UI,system-ui,sans-serif}',
+      '#ft-widget-btn{position:fixed;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;border:none;cursor:grab;box-shadow:0 4px 20px rgba(124,58,237,.4);z-index:99999;display:flex;align-items:center;justify-content:center;font-size:24px;transition:box-shadow .2s;touch-action:none;user-select:none;-webkit-user-select:none}',
+      '#ft-widget-btn:hover{box-shadow:0 6px 28px rgba(124,58,237,.55)}',
+      '#ft-widget-btn.ft-dragging{cursor:grabbing}',
+      '#ft-widget-panel{position:fixed;width:360px;max-height:520px;background:#fff;border-radius:16px;box-shadow:0 12px 48px rgba(0,0,0,.18);z-index:99999;overflow:hidden;opacity:0;transform:translateY(12px) scale(.96);pointer-events:none;transition:opacity .25s,transform .25s;font-family:Inter,-apple-system,BlinkMacSystemFont,Segoe UI,system-ui,sans-serif}',
       '#ft-widget-panel.ft-open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}',
       '.ft-hdr{background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:18px 20px}',
       '.ft-hdr h3{margin:0 0 2px;font-size:16px;font-weight:700;color:#fff!important}',
@@ -108,6 +109,144 @@
     document.body.appendChild(panel);
     document.body.appendChild(modal);
 
+    // --- Position helpers ---
+    var BTN_SIZE = 56;
+    var PANEL_W = 360;
+    var PANEL_MAX_H = 520;
+    var DRAG_THRESHOLD = 5;
+
+    function clampBtn(x, y) {
+      var vw = window.innerWidth, vh = window.innerHeight;
+      x = Math.max(0, Math.min(x, vw - BTN_SIZE));
+      y = Math.max(0, Math.min(y, vh - BTN_SIZE));
+      return { x: x, y: y };
+    }
+
+    function setBtnPos(x, y) {
+      var c = clampBtn(x, y);
+      btn.style.left = c.x + 'px';
+      btn.style.top = c.y + 'px';
+      btn.style.right = 'auto';
+      btn.style.bottom = 'auto';
+      return c;
+    }
+
+    function positionPanel() {
+      var r = btn.getBoundingClientRect();
+      var vw = window.innerWidth, vh = window.innerHeight;
+      var pLeft, pTop;
+
+      // Vertical: prefer above
+      pTop = r.top - PANEL_MAX_H - 12;
+      if (pTop < 8) pTop = r.bottom + 12; // below if no room above
+      if (pTop + PANEL_MAX_H > vh - 8) pTop = vh - PANEL_MAX_H - 8;
+      if (pTop < 8) pTop = 8;
+
+      // Horizontal: align right edge with btn right, fallback left
+      pLeft = r.right - PANEL_W;
+      if (pLeft < 8) pLeft = r.left;
+      if (pLeft + PANEL_W > vw - 8) pLeft = vw - PANEL_W - 8;
+      if (pLeft < 8) pLeft = 8;
+
+      panel.style.left = pLeft + 'px';
+      panel.style.top = pTop + 'px';
+      panel.style.right = 'auto';
+      panel.style.bottom = 'auto';
+    }
+
+    // --- Restore saved position or default bottom-right ---
+    (function restorePos() {
+      try {
+        var saved = JSON.parse(localStorage.getItem('ft-widget-pos'));
+        if (saved && typeof saved.x === 'number' && typeof saved.y === 'number') {
+          setBtnPos(saved.x, saved.y);
+          return;
+        }
+      } catch(e) {}
+      // Default: bottom-right
+      var vw = window.innerWidth, vh = window.innerHeight;
+      setBtnPos(vw - BTN_SIZE - 24, vh - BTN_SIZE - 24);
+    })();
+
+    // --- Drag & Drop ---
+    var dragState = null; // { startX, startY, offsetX, offsetY, dragging }
+
+    function onPointerDown(ex, ey) {
+      var r = btn.getBoundingClientRect();
+      dragState = {
+        startX: ex, startY: ey,
+        offsetX: ex - r.left, offsetY: ey - r.top,
+        dragging: false
+      };
+    }
+    function onPointerMove(ex, ey) {
+      if (!dragState) return;
+      var dx = ex - dragState.startX, dy = ey - dragState.startY;
+      if (!dragState.dragging && Math.sqrt(dx*dx + dy*dy) > DRAG_THRESHOLD) {
+        dragState.dragging = true;
+        btn.classList.add('ft-dragging');
+      }
+      if (dragState.dragging) {
+        var c = setBtnPos(ex - dragState.offsetX, ey - dragState.offsetY);
+        if (open) positionPanel();
+      }
+    }
+    function onPointerUp() {
+      if (!dragState) return;
+      var wasDrag = dragState.dragging;
+      if (wasDrag) {
+        var r = btn.getBoundingClientRect();
+        try { localStorage.setItem('ft-widget-pos', JSON.stringify({ x: r.left, y: r.top })); } catch(e) {}
+      }
+      btn.classList.remove('ft-dragging');
+      dragState = null;
+      return wasDrag;
+    }
+
+    // Mouse events
+    btn.addEventListener('mousedown', function(e) {
+      e.preventDefault();
+      onPointerDown(e.clientX, e.clientY);
+    });
+    document.addEventListener('mousemove', function(e) {
+      if (dragState) { e.preventDefault(); onPointerMove(e.clientX, e.clientY); }
+    });
+    document.addEventListener('mouseup', function(e) {
+      if (dragState) {
+        var wasDrag = onPointerUp();
+        if (!wasDrag && (e.target === btn || btn.contains(e.target))) {
+          togglePanel();
+        }
+      }
+    });
+
+    // Touch events
+    btn.addEventListener('touchstart', function(e) {
+      if (e.touches.length === 1) {
+        onPointerDown(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+    document.addEventListener('touchmove', function(e) {
+      if (dragState) {
+        if (dragState.dragging) e.preventDefault();
+        onPointerMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: false });
+    document.addEventListener('touchend', function(e) {
+      if (dragState) {
+        var wasDrag = onPointerUp();
+        if (!wasDrag) { togglePanel(); }
+      }
+    });
+
+    // Recalc on resize
+    window.addEventListener('resize', function() {
+      var r = btn.getBoundingClientRect();
+      var c = setBtnPos(r.left, r.top);
+      try { localStorage.setItem('ft-widget-pos', JSON.stringify({ x: c.x, y: c.y })); } catch(e) {}
+      if (open) positionPanel();
+    });
+
     // Card clicks → open iframe
     panel.querySelectorAll('.ft-card').forEach(function(card) {
       card.addEventListener('click', function() {
@@ -127,14 +266,14 @@
 
     // Toggle panel
     var open = false;
-    btn.addEventListener('click', function (e) {
-      e.stopPropagation();
+    function togglePanel() {
       open = !open;
+      if (open) positionPanel();
       panel.classList.toggle('ft-open', open);
-    });
+    }
 
     document.addEventListener('click', function (e) {
-      if (open && !panel.contains(e.target) && e.target !== btn) {
+      if (open && !panel.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
         open = false;
         panel.classList.remove('ft-open');
       }
