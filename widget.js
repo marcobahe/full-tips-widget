@@ -70,37 +70,37 @@
     }
     #ff-help-panel.open { transform:scale(1) translateY(0); opacity:1; pointer-events:all; }
 
-    .ff-handle { display:flex; justify-content:center; padding:16px 0; }
+    .ff-handle { display:flex; justify-content:center; padding:16px 0 12px; }
     .ff-handle span { width:36px; height:5px; background:rgba(0,0,0,0.1); border-radius:3px; }
 
-    .ff-hdr-wrap { padding:0 24px 24px; }
+    .ff-hdr-wrap { padding:0 24px 28px; }
     .ff-hdr {
-      background:linear-gradient(135deg,#7C3AED,#6366F1); padding:24px; border-radius:24px;
+      background:linear-gradient(135deg,#7C3AED,#6366F1); padding:28px; border-radius:24px;
       color:white; box-shadow:0 10px 25px -5px rgba(124,58,237,0.3);
     }
-    .ff-hdr-top { display:flex; align-items:center; gap:12px; margin-bottom:8px; }
+    .ff-hdr-top { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
     .ff-hdr-top svg { width:28px; height:28px; color:white; fill:white; }
     .ff-hdr-top h3 { font-size:24px; font-weight:700; color:white; letter-spacing:-0.5px; }
-    .ff-hdr p { font-size:14px; color:#e9d5ff; line-height:1.5; opacity:0.9; }
+    .ff-hdr p { font-size:15px; color:#e9d5ff; line-height:1.5; opacity:0.9; }
 
-    .ff-srch { padding:0 24px 24px; position:relative; }
-    .ff-srch svg { position:absolute; left:40px; top:50%; transform:translateY(-50%); width:22px; height:22px; color:#9ca3af; fill:#9ca3af; }
+    .ff-srch { padding:0 24px 28px; position:relative; }
+    .ff-srch svg { position:absolute; left:40px; top:50%; transform:translateY(-50%); width:22px; height:22px; color:#9ca3af; fill:#9ca3af; pointer-events:none; }
     .ff-srch input {
-      width:100%; padding:16px 16px 16px 52px; background:#f9fafb; border:none; border-radius:16px;
-      font-size:15px; color:#1f2937; outline:none; font-family:inherit;
+      width:100%; padding:18px 18px 18px 54px; background:#f9fafb; border:none; border-radius:16px;
+      font-size:16px; color:#1f2937; outline:none; font-family:inherit;
       box-shadow:inset 0 2px 4px rgba(0,0,0,0.04); transition:all 0.2s;
     }
     .ff-srch input::placeholder { color:#9ca3af; }
     .ff-srch input:focus { box-shadow:0 0 0 3px rgba(124,58,237,0.2); background:white; }
 
-    .ff-lhdr { display:flex; align-items:center; justify-content:space-between; padding:0 28px 12px; }
+    .ff-lhdr { display:flex; align-items:center; justify-content:space-between; padding:0 28px 16px; }
     .ff-lhdr h4 { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#9ca3af; }
     .ff-lhdr span { font-size:11px; font-weight:600; color:#7c3aed; }
 
-    .ff-list { flex:1; overflow-y:auto; padding:0 24px 16px; display:flex; flex-direction:column; gap:16px; }
+    .ff-list { flex:1; overflow-y:auto; padding:0 24px 20px; display:flex; flex-direction:column; gap:20px; }
 
     .ff-card {
-      width:100%; text-align:left; background:white; padding:20px; border-radius:24px;
+      width:100%; text-align:left; background:white; padding:22px; border-radius:24px;
       border:1px solid #f3f4f6; box-shadow:0 1px 3px rgba(0,0,0,0.05);
       display:flex; gap:20px; align-items:center; cursor:pointer; transition:all 0.15s;
     }
@@ -111,28 +111,28 @@
     .ff-card.off:active { transform:none; }
 
     .ff-cico { width:56px; height:56px; flex-shrink:0; border-radius:16px; display:flex; align-items:center; justify-content:center; }
-    .ff-cico svg { width:30px; height:30px; fill:white; color:white; }
+    .ff-cico svg { width:30px; height:30px; fill:white; color:white; pointer-events:none; }
 
     .ff-cbody { flex:1; min-width:0; }
-    .ff-cbody h4 { font-size:17px; font-weight:700; color:#111827; margin-bottom:2px; }
-    .ff-cbody p { font-size:14px; color:#6b7280; margin-bottom:12px; line-height:1.4; }
+    .ff-cbody h4 { font-size:18px; font-weight:700; color:#111827; margin-bottom:4px; }
+    .ff-cbody p { font-size:14px; color:#6b7280; margin-bottom:14px; line-height:1.5; }
     .ff-cmeta { display:flex; align-items:center; gap:16px; }
-    .ff-cmeta .bg { font-size:12px; font-weight:700; padding:4px 12px; background:#f3e8ff; color:#7c3aed; border-radius:9999px; }
+    .ff-cmeta .bg { font-size:12px; font-weight:700; padding:5px 14px; background:#f3e8ff; color:#7c3aed; border-radius:9999px; }
     .ff-cmeta .tm { display:flex; align-items:center; gap:6px; font-size:12px; font-weight:500; color:#9ca3af; }
-    .ff-cmeta .tm svg { width:16px; height:16px; fill:#9ca3af; }
+    .ff-cmeta .tm svg { width:16px; height:16px; fill:#9ca3af; pointer-events:none; }
 
     .ff-chev { color:#d1d5db; display:flex; align-items:center; }
-    .ff-chev svg { width:24px; height:24px; fill:#d1d5db; }
+    .ff-chev svg { width:24px; height:24px; fill:#d1d5db; pointer-events:none; }
 
-    .ff-foot { padding:24px; }
+    .ff-foot { padding:28px 24px; }
     .ff-foot button {
       width:100%; display:flex; align-items:center; justify-content:center; gap:8px;
-      padding:16px; background:transparent; border:2px solid transparent;
+      padding:18px; background:transparent; border:2px solid transparent;
       color:#7c3aed; font-size:15px; font-weight:700; cursor:pointer;
       border-radius:16px; transition:all 0.2s; font-family:inherit;
     }
     .ff-foot button:hover { background:#faf5ff; border-color:#f3e8ff; }
-    .ff-foot button svg { width:20px; height:20px; fill:#7c3aed; }
+    .ff-foot button svg { width:20px; height:20px; fill:#7c3aed; pointer-events:none; }
 
     .ff-sp { height:40px; background:white; flex-shrink:0; }
 
