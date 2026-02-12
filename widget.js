@@ -223,32 +223,15 @@
       box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4);
     }
 
-    #ff-help-btn .badge {
-      position: absolute;
-      top: -2px;
-      right: -2px;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #ef4444;
-      color: white;
-      font-size: 11px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid white;
-    }
-
     #ff-help-panel {
       position: fixed;
       bottom: 92px;
       right: 24px;
-      width: 420px;
-      max-height: 70vh;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 12px 48px rgba(0,0,0,0.15);
+      width: 440px;
+      max-height: 80vh;
+      background: #f8fafc;
+      border-radius: 20px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.18);
       z-index: 99998;
       overflow: hidden;
       transform: scale(0.9) translateY(10px);
@@ -264,48 +247,66 @@
       pointer-events: all;
     }
 
+    .ff-panel-handle {
+      text-align: center;
+      padding: 10px 0 4px;
+    }
+
+    .ff-panel-handle span {
+      display: inline-block;
+      width: 40px;
+      height: 4px;
+      border-radius: 2px;
+      background: #cbd5e1;
+    }
+
     .ff-panel-header {
+      margin: 0 20px;
       padding: 24px;
-      background: linear-gradient(135deg, #7c3aed, #6d28d9);
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
       color: white;
+      border-radius: 16px;
     }
 
     .ff-panel-header h3 {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .ff-panel-header p {
-      font-size: 13px;
-      color: rgba(255,255,255,0.85);
+      font-size: 14px;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.4;
     }
 
     .ff-panel-section {
-      padding: 16px 24px 8px;
-      font-size: 11px;
+      padding: 20px 24px 12px;
+      font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: #94a3b8;
+      letter-spacing: 0.8px;
+      color: #64748b;
     }
 
     .ff-panel-list {
-      padding: 8px 0;
+      padding: 0 20px 8px;
       overflow-y: auto;
-      max-height: 460px;
+      max-height: calc(80vh - 260px);
     }
 
     .ff-panel-footer {
-      padding: 12px 24px 16px;
-      border-top: 1px solid #e2e8f0;
+      padding: 16px 24px 20px;
       text-align: center;
     }
 
     .ff-panel-footer a {
       color: #7c3aed;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
       text-decoration: none;
     }
@@ -316,20 +317,25 @@
 
     .ff-tutorial-item {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 16px;
-      padding: 20px 24px;
+      padding: 18px 20px;
+      margin-bottom: 12px;
       cursor: pointer;
       transition: all 0.2s;
-      border-bottom: 1px solid #f1f5f9;
+      background: white;
+      border-radius: 14px;
+      border: 1px solid #e8ecf1;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     }
 
     .ff-tutorial-item:last-child {
-      border-bottom: none;
+      margin-bottom: 0;
     }
 
     .ff-tutorial-item:hover {
-      background: #f8fafc;
+      border-color: #c4b5fd;
+      box-shadow: 0 2px 8px rgba(124,58,237,0.1);
     }
 
     .ff-tutorial-item.disabled {
@@ -338,18 +344,18 @@
     }
 
     .ff-tutorial-item.disabled:hover {
-      background: transparent;
+      border-color: #e8ecf1;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     }
 
     .ff-tutorial-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: #f1f5f9;
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
+      font-size: 24px;
       flex-shrink: 0;
     }
 
@@ -359,7 +365,7 @@
 
     .ff-tutorial-info h4 {
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 700;
       color: #1e293b;
       margin-bottom: 4px;
     }
@@ -368,13 +374,29 @@
       font-size: 13px;
       color: #64748b;
       line-height: 1.4;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .ff-tutorial-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-size: 12px;
-      color: #a78bfa;
-      font-weight: 500;
+      color: #64748b;
+    }
+
+    .ff-tutorial-meta .steps {
+      background: #f3f0ff;
+      color: #7c3aed;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .ff-tutorial-arrow {
+      color: #cbd5e1;
+      font-size: 18px;
+      flex-shrink: 0;
     }
 
     /* Modal iframe overlay */
@@ -507,29 +529,33 @@
     const sectionName = section ? getSectionName(section.key) : 'Esta página';
 
     let html = `
+      <div class="ff-panel-handle"><span></span></div>
       <div class="ff-panel-header">
         <h3>❓ Central de Ajuda</h3>
-        <p>Tutoriais interativos para ${sectionName}</p>
+        <p>Aprenda a dominar seus ${sectionName} com tutoriais rápidos e interativos.</p>
       </div>
     `;
 
     if (tutorials.length > 0) {
-      // Sem section header - layout limpo
+      html += `<div class="ff-panel-section">Tutoriais em destaque</div>`;
       html += `<div class="ff-panel-list">`;
       
-      tutorials.forEach(t => {
+      const iconColors = ['#ede9fe','#fce7f3','#ecfdf5','#fef3c7','#e0f2fe','#f1f5f9'];
+      tutorials.forEach((t, i) => {
         const cls = t.available ? '' : 'disabled';
+        const bgColor = iconColors[i % iconColors.length];
         const meta = t.available 
-          ? `<div class="ff-tutorial-meta">${t.steps || '7 passos'} • ~${t.duration || '3 min'}</div>`
-          : `<div class="ff-tutorial-meta" style="color:#94a3b8;">Em breve</div>`;
+          ? `<div class="ff-tutorial-meta"><span class="steps">${t.steps || '7 passos'}</span> ⏱ ~${t.duration || '3 min'}</div>`
+          : `<div class="ff-tutorial-meta">Em breve</div>`;
         html += `
           <div class="ff-tutorial-item ${cls}" ${t.available ? `onclick="window.__ffWidget.openTutorial('${t.url}', '${t.id}')"` : ''}>
-            <div class="ff-tutorial-icon">${t.icon}</div>
+            <div class="ff-tutorial-icon" style="background:${bgColor}">${t.icon}</div>
             <div class="ff-tutorial-info">
               <h4>${t.title}</h4>
               <p>${t.description || ''}</p>
               ${meta}
             </div>
+            ${t.available ? '<div class="ff-tutorial-arrow">›</div>' : ''}
           </div>
         `;
       });
